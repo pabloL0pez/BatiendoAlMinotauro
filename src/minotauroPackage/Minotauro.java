@@ -77,6 +77,14 @@ public class Minotauro {
 		escribirSolucion("Kruskal");
 	}
 	
+	private int find(int descanso) {
+		return this.padres[descanso] == descanso ? descanso : find(this.padres[descanso]);
+	}
+	
+	private void union(int descanso1, int descanso2) {
+		this.padres[find(descanso1)] = find(descanso2);
+	}
+	
 	public void resolverPrim() throws IOException {
 		int descanso;
 		this.conjuntoSol.add(0);
@@ -124,14 +132,6 @@ public class Minotauro {
 		}
 		
 		buffer.close();
-	}
-
-	private int find(int descanso) {
-		return this.padres[descanso] == descanso ? descanso : find(this.padres[descanso]);
-	}
-	
-	private void union(int descanso1, int descanso2) {
-		this.padres[find(descanso1)] = find(descanso2);
 	}
 	
 	public void mostrarPlanilla() {
